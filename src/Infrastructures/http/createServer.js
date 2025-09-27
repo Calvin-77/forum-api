@@ -90,6 +90,14 @@ const createServer = async (container) => {
     return h.continue;
   });
 
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: () => ({
+      value: 'Hello world!',
+    }),
+  });
+
   return server;
 };
 
