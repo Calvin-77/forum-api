@@ -14,10 +14,10 @@ class GetThreadDetailsUseCase {
     const comments = await this._commentRepository.getCommentsByThreadId(threadId);
 
     const mappedComments = comments.map((row) => {
-      const { is_deleted, ...otherFields } = row;
+      const { is_deleted, date, ...otherFields } = row;
       return new CommentDetails({
         ...otherFields,
-        date: new Date().toISOString(),
+        date: date || new Date().toISOString(),
         isDeleted: is_deleted || false,
       });
     });
